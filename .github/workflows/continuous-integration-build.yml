@@ -2,11 +2,9 @@ name: CI Build
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
@@ -24,10 +22,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Make Maven wrapper executable
-        run: chmod +x ./mvnw
+      - name: Make mvnw executable in initial
+        run: chmod +x ./gs-rest-service-main/initial/mvnw
 
       - name: Build Initial with Maven
         working-directory: ./gs-rest-service-main/initial
         run: ./mvnw --batch-mode clean package
-
